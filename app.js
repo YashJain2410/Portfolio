@@ -16,7 +16,7 @@ function header() {
       <nav class="desktop-nav" aria-label="Main navigation">
         <a href="${home}#work">Work</a><a href="${home}#about">About</a><a href="${home}#experience">Experience</a><a href="${home}#contact">Contact</a>
       </nav>
-      <div class="header-actions">${link(data.links.resume, "Resume", "header-resume", external, 'download="Yash_Jain_Resume.pdf"')}<button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button></div>
+      <div class="header-actions"><button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false"><span class="theme-icon" aria-hidden="true">☾</span><span class="theme-label">Dark</span></button>${link(data.links.resume, "Resume", "header-resume", external, 'download="Yash_Jain_Resume.pdf"')}<button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button></div>
       <nav class="mobile-nav" id="mobile-menu" aria-label="Mobile navigation" hidden><a href="${home}#work">Work</a><a href="${home}#about">About</a><a href="${home}#experience">Experience</a><a href="${home}#contact">Contact</a>${link(data.links.resume, "Resume", "mobile-resume", external)}</nav>
     </header>`;
 }
@@ -33,7 +33,7 @@ function visual(project, large = false) {
 }
 
 function projectCard(project, index) {
-  return `<article class="project-card reveal"><a class="project-card-visual-link" href="${projectUrl(project)}" aria-label="Read about ${esc(project.name)}">${visual(project)}</a><div class="project-card-copy"><div class="project-card-top"><span class="eyebrow">${esc(project.number)} / ${esc(project.category)}</span><span class="tiny-asterisk">✳</span></div><h3><a href="${projectUrl(project)}">${esc(project.name)}</a></h3><p class="project-one-liner">${esc(project.oneLiner)}</p><p class="project-summary">${esc(project.overview)}</p><div class="project-card-bottom"><div class="mini-tags">${project.technologies.slice(0, 3).map((tech) => `<span>${esc(tech)}</span>`).join("")}</div>${link(projectUrl(project), "Explore project", "circle-link", arrow, `aria-label="Explore ${esc(project.name)}"`)}</div></div></article>`;
+  return `<article class="project-card reveal"><a class="project-card-visual-link" href="${projectUrl(project)}" aria-label="Read about ${esc(project.name)}">${visual(project)}</a><div class="project-card-copy"><div class="project-card-top"><span class="eyebrow">${esc(project.number)} / ${esc(project.category)}</span><span class="tiny-asterisk">✳</span></div><h3><a href="${projectUrl(project)}">${esc(project.name)}</a></h3><p class="project-one-liner">${esc(project.oneLiner)}</p><p class="project-summary">${esc(project.overview)}</p><div class="project-card-bottom"><div class="mini-tags">${project.technologies.slice(0, 3).map((tech) => `<span>${esc(tech)}</span>`).join("")}</div>${link(projectUrl(project), "Explore project", "project-action", arrow, `aria-label="Explore ${esc(project.name)}"`)}</div></div></article>`;
 }
 
 function homePage() {
@@ -70,6 +70,22 @@ if (!isProjectPage || !selected) {
 
 const menuToggle = document.querySelector(".menu-toggle");
 const mobileMenu = document.querySelector(".mobile-nav");
+const themeToggle = document.querySelector(".theme-toggle");
+const updateThemeToggle = () => {
+  const dark = document.documentElement.dataset.theme === "dark";
+  themeToggle.setAttribute("aria-label", `Switch to ${dark ? "light" : "dark"} mode`);
+  themeToggle.setAttribute("aria-pressed", String(dark));
+  themeToggle.querySelector(".theme-icon").textContent = dark ? "☀" : "☾";
+  themeToggle.querySelector(".theme-label").textContent = dark ? "Light" : "Dark";
+  document.querySelector('meta[name="theme-color"]').content = dark ? "#151d1a" : "#f8f5ec";
+};
+updateThemeToggle();
+themeToggle.addEventListener("click", () => {
+  const dark = document.documentElement.dataset.theme !== "dark";
+  document.documentElement.dataset.theme = dark ? "dark" : "light";
+  try { localStorage.setItem("yash-portfolio-theme", dark ? "dark" : "light"); } catch {}
+  updateThemeToggle();
+});
 menuToggle?.addEventListener("click", () => {
   const open = menuToggle.getAttribute("aria-expanded") !== "true";
   menuToggle.setAttribute("aria-expanded", String(open));
