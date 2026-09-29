@@ -38,7 +38,7 @@ function projectCard(project, index) {
 
 function homePage() {
   return `${header()}<main id="main">
-    <section class="hero"><div class="hero-wash"></div><div class="hero-grain"></div><div class="hero-content"><div class="hero-kicker"><span class="status-dot"></span>${esc(data.hero.eyebrow)}</div><h1>${esc(data.hero.lineOne)}<br><em>${esc(data.hero.lineTwo)}</em></h1><p class="hero-description">${esc(data.hero.description)}</p><div class="hero-cta">${link("#work", "Explore my work", "button button-dark")}${link(data.links.resume, "View résumé", "button button-outline", external)}</div></div><div class="hero-side-note">${esc(data.title)}<span>↘</span>${esc(data.location)}</div><div class="hero-scroll">SCROLL TO EXPLORE <span>↓</span></div></section>
+    <section class="hero"><div class="hero-wash"></div><div class="hero-grain"></div><div class="hero-content"><p class="hero-intro">${esc(data.hero.description)}</p><h1>${esc(data.hero.lineOne)}<br><em>${esc(data.hero.lineTwo)}</em></h1><div class="hero-cta">${link("#work", "Explore my work", "button button-dark")}${link(data.links.resume, "View résumé", "button button-outline", external)}</div></div><div class="hero-scroll">SCROLL TO EXPLORE <span>↓</span></div></section>
     <div class="availability"><span class="availability-icon">✳</span><span>${esc(data.availability)}</span><a href="#contact">LET’S TALK ${external}</a></div>
     <section class="section section-work" id="work"><div class="section-intro reveal"><div class="section-number">01 / SELECTED WORK</div><div><h2>Ideas, made <em>real.</em></h2><p>Products I took from a technical question to a working system. Each one taught me something about building with purpose.</p></div></div><div class="projects-list">${data.projects.map(projectCard).join("")}</div><div class="work-end-note"><span>MORE IN THE MAKING</span><p>There is always another problem worth solving.</p>${link(data.links.github, "Follow along on GitHub", "text-link", external)}</div></section>
     <section class="belief-band"><div class="belief-orb"></div><span class="eyebrow">A NOTE ON HOW I WORK</span><p>Good technology starts with a <em>real problem</em> and ends with something people can actually use.</p><span class="belief-signature">— ${esc(data.name)}</span></section>
@@ -77,7 +77,7 @@ const updateThemeToggle = () => {
   themeToggle.setAttribute("aria-pressed", String(dark));
   themeToggle.querySelector(".theme-icon").textContent = dark ? "☀" : "☾";
   themeToggle.querySelector(".theme-label").textContent = dark ? "Light" : "Dark";
-  document.querySelector('meta[name="theme-color"]').content = dark ? "#151d1a" : "#f8f5ec";
+  document.querySelector('meta[name="theme-color"]').content = dark ? "#211915" : "#f8f5ec";
 };
 updateThemeToggle();
 themeToggle.addEventListener("click", () => {

@@ -16,7 +16,6 @@ export const portfolio = {
     resume: "./assets/Yash_Jain_Resume.pdf",
   },
   hero: {
-    eyebrow: "AI engineer intern · Software developer · Builder",
     lineOne: "I build things",
     lineTwo: "that think.",
     description:
