@@ -18,6 +18,7 @@ export const portfolio = {
   hero: {
     lineOne: "I build things",
     lineTwo: "that think.",
+    tagline: "AI engineer intern · Software developer · Builder",
     description:
       "I turn ambitious AI ideas into useful, working products—from the models and systems behind them to the experience people actually use.",
   },
@@ -35,6 +36,7 @@ export const portfolio = {
       name: "AI Voice Interview Platform",
       category: "Conversational AI · Full-stack product",
       oneLiner: "A real-time AI interviewer that listens, adapts, and evaluates.",
+      cardDescription: "A live AI interviewer with low-latency voice, context-aware follow-ups, and rubric-based feedback.",
       overview:
         "I built a live interview experience that can hold a two-way voice conversation, ask follow-up questions informed by a candidate’s background, and score answers against a rubric.",
       problem:
@@ -61,6 +63,7 @@ export const portfolio = {
       name: "CodeSage",
       category: "Developer tools · Code intelligence",
       oneLiner: "A codebase assistant that understands how a repository fits together.",
+      cardDescription: "A codebase assistant that maps call graphs and retrieves the right context to answer repository questions.",
       overview:
         "I built a developer assistant that parses repositories into call graphs and retrieves the right code context before answering questions about a codebase.",
       problem:
@@ -87,6 +90,7 @@ export const portfolio = {
       name: "AI Image Generation Platform",
       category: "Generative AI · Product infrastructure",
       oneLiner: "A flexible studio for consistent product visuals.",
+      cardDescription: "A product image studio that turns style references into consistent visual variations.",
       overview:
         "I built an image generation platform that uses reference images for style transfer so a product team can explore visual directions while keeping a consistent look.",
       problem:

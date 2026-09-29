@@ -32,13 +32,17 @@ function visual(project, large = false) {
   return wrap(`<div class="image-art image-art-one"></div><div class="image-art image-art-two"></div><div class="image-art image-art-three"></div><div class="image-toolbar"><span>STYLE REFERENCE</span><span>→</span><span>GENERATED VARIATIONS</span></div>`);
 }
 
-function projectCard(project, index) {
-  return `<article class="project-card reveal"><a class="project-card-visual-link" href="${projectUrl(project)}" aria-label="Read about ${esc(project.name)}">${visual(project)}</a><div class="project-card-copy"><div class="project-card-top"><span class="eyebrow">${esc(project.number)} / ${esc(project.category)}</span><span class="tiny-asterisk">✳</span></div><h3><a href="${projectUrl(project)}">${esc(project.name)}</a></h3><p class="project-one-liner">${esc(project.oneLiner)}</p><p class="project-summary">${esc(project.overview)}</p><div class="project-card-bottom"><div class="mini-tags">${project.technologies.slice(0, 3).map((tech) => `<span>${esc(tech)}</span>`).join("")}</div>${link(projectUrl(project), "Explore project", "project-action", arrow, `aria-label="Explore ${esc(project.name)}"`)}</div></div></article>`;
+function projectArt(project) {
+  return `<div class="model-art model-art-${esc(project.visual)}" aria-hidden="true"><span class="art-halo"></span><span class="art-form art-form-one"></span><span class="art-form art-form-two"></span><span class="art-form art-form-three"></span><span class="art-detail"></span></div>`;
+}
+
+function projectCard(project) {
+  return `<article class="model-project-card reveal"><a class="model-project-art-link" href="${projectUrl(project)}" aria-label="Explore ${esc(project.name)}">${projectArt(project)}</a><div class="model-project-main"><span class="model-project-kind">${esc(project.category)}</span><h3><a href="${projectUrl(project)}">${esc(project.name)}</a></h3>${link(projectUrl(project), "Explore project", "model-project-link", arrow, `aria-label="Explore ${esc(project.name)}"`)}</div><p class="model-project-description">${esc(project.cardDescription || project.oneLiner)}</p></article>`;
 }
 
 function homePage() {
   return `${header()}<main id="main">
-    <section class="hero"><div class="hero-wash"></div><div class="hero-grain"></div><div class="hero-content"><p class="hero-intro">${esc(data.hero.description)}</p><h1>${esc(data.hero.lineOne)}<br><em>${esc(data.hero.lineTwo)}</em></h1><div class="hero-cta">${link("#work", "Explore my work", "button button-dark")}${link(data.links.resume, "View résumé", "button button-outline", external)}</div></div><div class="hero-scroll">SCROLL TO EXPLORE <span>↓</span></div></section>
+    <section class="hero"><div class="hero-wash"></div><div class="hero-grain"></div><div class="hero-content"><h1>${esc(data.hero.lineOne)}<br><em>${esc(data.hero.lineTwo)}</em></h1><p class="hero-tagline">${esc(data.hero.tagline)}</p><div class="hero-cta">${link("#work", "Explore my work", "button button-dark")}${link(data.links.resume, "View résumé", "button button-outline", external)}</div></div><div class="hero-scroll">SCROLL TO EXPLORE <span>↓</span></div></section>
     <div class="availability"><span class="availability-icon">✳</span><span>${esc(data.availability)}</span><a href="#contact">LET’S TALK ${external}</a></div>
     <section class="section section-work" id="work"><div class="section-intro reveal"><div class="section-number">01 / SELECTED WORK</div><div><h2>Ideas, made <em>real.</em></h2><p>Products I took from a technical question to a working system. Each one taught me something about building with purpose.</p></div></div><div class="projects-list">${data.projects.map(projectCard).join("")}</div><div class="work-end-note"><span>MORE IN THE MAKING</span><p>There is always another problem worth solving.</p>${link(data.links.github, "Follow along on GitHub", "text-link", external)}</div></section>
     <section class="belief-band"><div class="belief-orb"></div><span class="eyebrow">A NOTE ON HOW I WORK</span><p>Good technology starts with a <em>real problem</em> and ends with something people can actually use.</p><span class="belief-signature">— ${esc(data.name)}</span></section>
@@ -77,7 +81,7 @@ const updateThemeToggle = () => {
   themeToggle.setAttribute("aria-pressed", String(dark));
   themeToggle.querySelector(".theme-icon").textContent = dark ? "☀" : "☾";
   themeToggle.querySelector(".theme-label").textContent = dark ? "Light" : "Dark";
-  document.querySelector('meta[name="theme-color"]').content = dark ? "#211915" : "#f8f5ec";
+  document.querySelector('meta[name="theme-color"]').content = dark ? "#211915" : "#f5efe4";
 };
 updateThemeToggle();
 themeToggle.addEventListener("click", () => {

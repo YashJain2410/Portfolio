@@ -20,7 +20,7 @@ The site presents each project as a short case study—**the problem, the system
 - A downloadable résumé and links to GitHub, LinkedIn, and email
 - A single content file for portfolio text and links
 
-The visual direction takes cues from the editorial typography, warm colors, and spacious layout of [Microsoft AI](https://microsoft.ai/). The illustrations on project cards are CSS concept visuals, not screenshots of the applications.
+The visual direction takes cues from the editorial typography, warm colors, compact navigation, and model cards on [Microsoft AI](https://microsoft.ai/). The project illustrations are CSS concept visuals, not screenshots of the applications. The interface uses Red Hat Mono and Newsreader from Google Fonts. Microsoft AI's display font, Bradford LL, requires a separate web licence from [Lineto](https://lineto.com/information/help/licence-user-rights/basic-licencing), so it is not bundled here.
 
 ## Run locally
 
@@ -34,7 +34,7 @@ Then open [http://localhost:8000](http://localhost:8000).
 
 ## Update the site
 
-Edit [`content.js`](./content.js) to change the bio, projects, experience, skills, education, email, and social links. The homepage and all project pages read from that one file. Every project needs a unique `slug`; its detail page is `project.html?slug=your-slug`. Leave an optional `live` URL empty to hide its button.
+Edit [`content.js`](./content.js) to change the hero tagline, bio, project card descriptions and case studies, experience, skills, education, email, and social links. The homepage and all project pages read from that one file. Every project needs a unique `slug`; its detail page is `project.html?slug=your-slug`. Leave an optional `live` URL empty to hide its button.
 
 To update the résumé download, replace [`assets/Yash_Jain_Resume.pdf`](./assets/Yash_Jain_Resume.pdf). If you rename the PDF, update `links.resume` in `content.js` too.
 
